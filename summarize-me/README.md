@@ -1,20 +1,20 @@
 # 🤖 QuickMeet: AI for Faster Meeting Insights
 
-![Banner](images/upload.png) <!-- Replace with a banner image if available -->
+![Banner](images/upload.png) <!-- Replace with an actual banner if available -->
 
-**QuickMeet** is an AI-powered web application that transforms long meeting recordings into concise summaries, extracts key action items, enables semantic search, and delivers content in multiple formats including AI avatar videos. It is designed to improve productivity and eliminate the need for manual note-taking.
+**QuickMeet** is a smart AI-based web application that transforms long, cluttered meeting recordings into clear summaries, structured action items, and engaging avatar-based video recaps. Built using AWS, HuggingFace Transformers, and modern web tech, it is a productivity booster for individuals and teams relying on virtual collaboration.
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-- 🎙️ **Speech-to-Text**: Converts audio/video to text using **AWS Transcribe**
-- 🧠 **Smart Summarization**: Generates brief, meaningful summaries with **HuggingFace BART**
-- ✅ **Action Item Extraction**: Uses **Regex and NLP** to extract decisions and responsibilities
-- 🔍 **Semantic Search**: Find information using **SentenceTransformer embeddings**
-- 📄 **Export Options**: Download summaries and action items as **PDF or PPT**
-- ✉️ **Email Integration**: Automatically sends files via **AWS SES**
-- 🎥 **AI Avatar Videos**: Presents meeting outcomes with **HeyGen**-generated avatars
+- 🎙️ **Speech-to-Text** using AWS Transcribe
+- 🧠 **Abstractive Summarization** with HuggingFace BART models
+- ✅ **Action Item Extraction** using Regex + NLP
+- 🔍 **Semantic Search** powered by Sentence Transformers
+- 📄 **Export Options** – Download results as PDF or PPT
+- ✉️ **Send via Email** – AWS SES Integration
+- 🎥 **AI Avatar Video Generation** via HeyGen API
 
 ---
 
@@ -40,9 +40,9 @@
 
 ## 🧩 System Architecture
 
-The system is designed with modular components to handle end-to-end meeting processing.
+QuickMeet operates through modular pipelines that handle audio/video processing, natural language understanding, and multi-format output generation.
 
-![System Architecture](images/system-architecture.png) <!-- Add the actual image -->
+![System Architecture](images/system-architecture.png)
 
 ---
 
@@ -51,36 +51,34 @@ The system is designed with modular components to handle end-to-end meeting proc
 ### Frontend
 - HTML5, CSS3, JavaScript (ES6+)
 - Bootstrap / Tailwind CSS
-- Axios / Fetch API
 
 ### Backend
 - Python 3.13.2
 - Flask, Flask-CORS
-- Hugging Face Transformers (`BART`)
-- SpaCy, NLTK
-- WeasyPrint, PDFKit, python-pptx
 
-### AI & NLP
-- AWS Transcribe
-- Sentence Transformers (`all-MiniLM-L6-v2`)
-- Regex & Custom NLP Scripts
-- HeyGen API (for avatar videos)
+### NLP & AI
+- HuggingFace Transformers (BART)
+- SentenceTransformers (`all-MiniLM-L6-v2`)
+- NLTK, SpaCy
+- Regex for action item extraction
 
-### Cloud Integration
-- AWS S3 – for file storage
-- AWS SES – for email delivery
+### Cloud Services
+- **AWS Transcribe** – Audio-to-Text
+- **AWS S3** – Cloud storage
+- **AWS SES** – Email delivery
+- **HeyGen API** – AI avatar video generation
 
 ---
 
-## 🔄 Workflow
+## 🔄 How It Works
 
-1. **Upload**: User uploads a meeting file (audio/video)
-2. **Transcription**: Audio is transcribed using AWS Transcribe
-3. **Summarization**: Transcript is summarized using BART (choice of two models based on size)
-4. **Action Items**: Extracted using regex and NLP
-5. **Semantic Search**: Query using SentenceTransformer-based similarity
-6. **Export**: Generate PDF or PPT summaries
-7. **Email & Video**: Send summaries via email or generate AI avatar video
+1. **Upload** audio/video files from a meeting.
+2. **Transcribe** audio using AWS Transcribe.
+3. **Summarize** with HuggingFace BART model (based on length).
+4. **Extract** action items using rule-based regex & NLP.
+5. **Search** with semantic similarity (no keyword needed).
+6. **Export** insights to PDF or PPT.
+7. **Deliver** via email or AI avatar video.
 
 ---
 
@@ -88,24 +86,27 @@ The system is designed with modular components to handle end-to-end meeting proc
 
 ```bash
 QuickMeet/
-├── app.py
-├── README.md
-├── templates/
-├── static/
-│   └── images/
-│       ├── upload.png
-│       ├── transcript.png
-│       ├── summary.png
-│       ├── search.png
-│       ├── export.png
-│       ├── email.png
-│       └── video.png
-├── utils/
-│   ├── email_sender.py
-│   ├── nlp_processing.py
-│   ├── pdf_generator.py
-│   ├── ppt_generator.py
-│   ├── transcriber.py
-│   ├── video_generator.py
-│   └── semantic_search.py
-└── requirements.txt
+├── main/                             # Core Flask backend
+│   └── app.py
+├── templates/                        # HTML templates
+├── static/                           # CSS or other frontend static files
+├── uploads/                          # Uploaded files (audio/video)
+├── images/                           # Screenshots for README
+│   ├── upload.png
+│   ├── transcript.png
+│   ├── summary.png
+│   ├── search.png
+│   ├── export.png
+│   ├── email.png
+│   ├── video.png
+│   └── system-architecture.png
+├── Scripts/                          # Any utility scripts
+├── Outputs/                          # Generated summary/PDF/PPT outputs
+├── Email_sending/                    # AWS SES integration code
+├── Pdf,ppt generation/               # PDFKit and python-pptx related scripts
+├── Semantic_search/                  # Vector similarity search
+├── Summary_Action items generation/  # NLP + regex logic
+├── Transcription/                    # AWS Transcribe handlers
+├── Video_generation/                 # HeyGen integration
+├── LICENSE
+└── README.md
